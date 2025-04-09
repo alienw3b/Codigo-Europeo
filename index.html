@@ -81,8 +81,8 @@
       const resultados = [];
       
       for (let i = 1; i <= cantidad; i++) {
-        let ancho = parseFloat(prompt("Ingresa el ancho (en cm) de la ventana #" + i));
-        let alto = parseFloat(prompt("Ingresa el alto (en cm) de la ventana #" + i));
+        let ancho = parseFloat(prompt("Ingresa el ancho (en mm) de la ventana #" + i));
+        let alto = parseFloat(prompt("Ingresa el alto (en mm) de la ventana #" + i));
 
         if (isNaN(ancho) || isNaN(alto)) {
           alert("Medidas inválidas. Intenta de nuevo.");
@@ -90,8 +90,8 @@
         }
 
         // Primer descuento
-        let A = ancho - 0.02;  // Restar 0.2 mm, convertido a cm
-        let B = alto - 0.02;   // Restar 0.2 mm, convertido a cm
+        let A = ancho - 0.2;  // Restar 0.2 mm
+        let B = alto - 0.2;   // Restar 0.2 mm
 
         // Segundo descuento
         let H = (A / 2) + 0.5;
@@ -117,11 +117,11 @@
           <div class="window-result">
             <h3>Ventana #${ventana.index}</h3>
             <strong>MARCO:</strong><br>
-            A: ${ventana.A} cm<br>
-            B: ${ventana.B} cm<br><br>
+            A: ${ventana.A} mm<br>
+            B: ${ventana.B} mm<br><br>
             <strong>HOJA:</strong><br>
-            H: ${ventana.H} cm<br>
-            V: ${ventana.V} cm<br>
+            H: ${ventana.H} mm<br>
+            V: ${ventana.V} mm<br>
           </div>
         `;
       });
