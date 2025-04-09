@@ -79,7 +79,9 @@
       }
 
       const resultados = [];
-      
+      let totalMarco = 0;
+      let totalHoja = 0;
+
       for (let i = 1; i <= cantidad; i++) {
         let ancho = parseFloat(prompt("Ingresa el ancho (en mm) de la ventana #" + i));
         let alto = parseFloat(prompt("Ingresa el alto (en mm) de la ventana #" + i));
@@ -97,6 +99,10 @@
         let H = (A / 2) + 0.5;
         let V = B - 6.8;
 
+        // Cálculos del material
+        totalMarco += (A + B) * 2; // Sumamos A y B, multiplicamos por 2 para el marco
+        totalHoja += (H + V) * 4;  // Sumamos H y V, multiplicamos por 4 para la hoja
+
         resultados.push({
           index: i,
           A: A.toFixed(2),
@@ -106,10 +112,10 @@
         });
       }
 
-      mostrarResultados(resultados);
+      mostrarResultados(resultados, totalMarco, totalHoja);
     }
 
-    function mostrarResultados(data) {
+    function mostrarResultados(data, totalMarco, totalHoja) {
       const resultsDiv = document.getElementById("results");
       resultsDiv.innerHTML = "<h2>Resultados</h2>";
       data.forEach(ventana => {
@@ -125,6 +131,13 @@
           </div>
         `;
       });
+
+      resultsDiv.innerHTML += `
+        <h3>Total de Material Necesario:</h3>
+        <p><strong>MARCO:</strong> ${totalMarco.toFixed(2)} mm</p>
+        <p><strong>HOJA:</strong> ${totalHoja.toFixed(2)} mm</p>
+      `;
+      
       resultsDiv.style.display = "block";
       document.querySelector(".copy").style.display = "inline-block";
     }
